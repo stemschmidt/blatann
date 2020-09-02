@@ -466,7 +466,7 @@ class GattsService(gatt.Service):
         char_md = nrf_types.BLEGattsCharMetadata(props)
         # Create cccd metadata if notify/indicate enabled
         if properties.notify or properties.indicate:
-            char_md.cccd_metadata = nrf_types.BLEGattsAttrMetadata()
+            char_md.cccd_metadata = nrf_types.BLEGattsAttrMetadata(write_permissions=_security_mapping[properties.security_level])
 
         if properties.sccd:
             char_md.sccd_metadata = nrf_types.BLEGattsAttrMetadata()
