@@ -174,8 +174,9 @@ class BLEGapEncryptInfo(object):
         self.auth = auth
 
     def to_c(self):
+        ltk = util.list_to_uint8_array(self.ltk)
         info = driver.ble_gap_enc_info_t()
-        info.ltk = util.list_to_uint8_array(self.ltk).cast()
+        info.ltk = ltk.cast()
         info.lesc = self.lesc
         info.auth = self.auth
         info.ltk_len = len(self.ltk)
